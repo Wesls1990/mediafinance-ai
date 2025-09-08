@@ -33,32 +33,53 @@
     }
     .orb{
       position:absolute; border-radius:50%;
-      filter:blur(90px); opacity:0.38; mix-blend-mode:screen;
-      animation:float 24s ease-in-out infinite;
+      filter:blur(95px); opacity:0.40; mix-blend-mode:screen;
+      animation:float 22s ease-in-out infinite;
       background:
         radial-gradient(circle at 30% 30%, var(--violet), transparent 70%),
         radial-gradient(circle at 70% 60%, var(--blue),   transparent 65%),
         radial-gradient(circle at 40% 80%, var(--cyan),   transparent 70%);
     }
-    .o1{width:65vmin; height:65vmin; left:-12vmin; bottom:-18vmin; animation-duration:28s;}
-    .o2{width:55vmin; height:55vmin; right:-10vmin; top:4vmin;     animation-duration:23s; animation-delay:-6s;}
-    .o3{width:75vmin; height:75vmin; right:12vmin; bottom:-26vmin; animation-duration:26s; animation-delay:-3s;}
-    @keyframes float{0%,100%{transform:translate3d(0,0,0) scale(1)} 50%{transform:translate3d(32px,-38px,0) scale(1.03)}}
+    .o1{width:70vmin; height:70vmin; left:-12vmin; bottom:-18vmin; animation-duration:28s;}
+    .o2{width:60vmin; height:60vmin; right:-10vmin; top:4vmin;     animation-duration:24s; animation-delay:-6s;}
+    .o3{width:80vmin; height:80vmin; right:12vmin; bottom:-26vmin; animation-duration:26s; animation-delay:-3s;}
 
+    /* More visible motion */
+    @keyframes float{
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      50%  { transform: translate3d(90px,-130px,0) scale(1.08); }
+      100% { transform: translate3d(0,0,0) scale(1); }
+    }
+
+    /* Hero content */
     .hero{position:relative; z-index:2; text-align:center; padding:40px 18px; width:min(92vw, 880px);}
     .logo{
-      width:240px; height:auto; margin:0 auto 22px; display:block;
+      width:420px;           /* bigger logo */
+      max-width:90vw;
+      height:auto;
+      margin:0 auto 22px;
+      display:block;
       filter:drop-shadow(0 10px 28px rgba(0,0,0,.45));
       animation:pop 700ms cubic-bezier(.2,.8,.2,1) both;
-      image-rendering:-webkit-optimize-contrast; /* crisp scaling on some browsers */
+      image-rendering:-webkit-optimize-contrast;
     }
     @keyframes pop{from{opacity:0; transform:translateY(8px) scale(.98)} to{opacity:1; transform:translateY(0) scale(1)}}
     .tag{font-size:1.22rem; color:var(--muted); margin:0 0 16px; text-wrap:balance; animation:fade 900ms 120ms ease-out both;}
     .soon{font-size:1.05rem; letter-spacing:.02em; opacity:.95; animation:fade 900ms 220ms ease-out both;}
     @keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
     footer{position:fixed; bottom:18px; width:100%; text-align:center; color:#9b9b9b; font-size:.9rem; z-index:2}
-    @media (max-width:640px){ .logo{width:170px} .tag{font-size:1.05rem} .soon{font-size:1rem} }
-    @media (prefers-reduced-motion: reduce){ .orb,.logo,.tag,.soon{animation:none!important} }
+
+    /* Responsive */
+    @media (max-width:640px){
+      .logo{width:240px}
+      .tag{font-size:1.05rem}
+      .soon{font-size:1rem}
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .orb,.logo,.tag,.soon{animation:none!important}
+    }
   </style>
 </head>
 <body>
@@ -70,6 +91,7 @@
   </div>
 
   <main class="hero">
+    <!-- Make sure your repo has /logo.png at the root (transparent, high-res) -->
     <img src="/logo.png" alt="MediaFinance.Ai logo" class="logo" />
     <p class="tag">The future of film finance. AI-driven. Studio-compliant.</p>
     <div class="soon">Coming Soon</div>
