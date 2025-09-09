@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — MediaFinance.Ai</title>
-  <meta name="description" content="MediaFinance.Ai — AI-powered finance for film & TV. Budgeting, payroll checking, AP auto-matching, and smart filing — built for studio standards." />
-  <meta name="robots" content="index,follow" />
+  <meta name="description" content="MediaFinance.Ai — At the forefront of media finance AI. Precision budgeting, payroll checking, AP auto-matching and smart filing — built for studio standards." />
   <link rel="icon" href="/favicon.png" />
   <style>
     :root{
       --violet:#7b5cff; --blue:#4aa3ff; --cyan:#00d4ff;
-      --bg:#0d0d0d; --fg:#ffffff; --muted:#b9b9b9; --line:#1c1c1c;
-      --glass:rgba(255,255,255,.06);
+      --bg:#0d0d0d; --fg:#ffffff; --muted:#b9b9b9; --line:#191919;
+      --glass:rgba(255,255,255,.06); --glass2:rgba(255,255,255,.04);
+      --shadow:0 14px 60px rgba(0,0,0,.45);
+      --radius:18px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -20,88 +21,87 @@
       font-family: Arial, Helvetica, sans-serif; line-height:1.45;
       overflow-x:hidden;
     }
-    a{color:#cfd8ff; text-decoration:none}
-    a:hover{text-decoration:underline}
+    a{color:#dfe4ff; text-decoration:none} a:hover{text-decoration:underline}
     .container{width:min(1200px,92vw); margin:0 auto}
     .center{text-align:center}
     .muted{color:var(--muted)}
-    .pill{display:inline-block; padding:.45rem .8rem; border-radius:999px; background:var(--glass); border:1px solid var(--line); font-size:.85rem; color:#d9dbff; letter-spacing:.02em}
-    .h1{font-size:clamp(2rem,4vw,3rem); margin:.5rem 0 1rem}
-    .h2{font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 .75rem}
-    .h3{font-size:1.1rem; letter-spacing:.03em; text-transform:uppercase; color:#cfd2ff}
-    .grid{display:grid; gap:20px}
-    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--line);font-size:.85rem;color:#dfe2ff;letter-spacing:.02em}
+    .h1{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.1;margin:.35rem 0 1rem}
+    .h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:.25rem 0 .75rem}
+    .h3{font-size:1rem;letter-spacing:.12em;text-transform:uppercase;color:#cfd2ff;margin-bottom:.6rem}
+    .lead{font-size:1.15rem;color:#e4e4e4}
+    .grid{display:grid;gap:22px}
+    .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
-      border:1px solid var(--line); border-radius:18px; padding:24px;
-      backdrop-filter:saturate(140%) blur(6px);
-      box-shadow:0 10px 40px rgba(0,0,0,.35);
+      background:linear-gradient(180deg,var(--glass),var(--glass2));
+      border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+      box-shadow:var(--shadow); backdrop-filter:saturate(140%) blur(6px);
       transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+      will-change:transform;
     }
-    .card:hover{transform:translateY(-4px); box-shadow:0 18px 60px rgba(0,0,0,.55); border-color:rgba(123,92,255,.45)}
-    .lead{font-size:1.15rem; color:#d9d9d9}
-    .spacer-1{height:24px} .spacer-2{height:48px} .spacer-3{height:72px}
-    .btn{
-      display:inline-block; padding:12px 18px; border-radius:12px; font-weight:600;
-      background: linear-gradient(90deg, var(--violet), var(--blue));
-      color:#0c0c0c; border:none; box-shadow:0 10px 32px rgba(66,124,255,.35);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .btn:hover{transform:translateY(-2px); box-shadow:0 16px 44px rgba(66,124,255,.5)}
-    .btn-ghost{
-      background:transparent; color:#e9e9ff; border:1px solid var(--line);
-      padding:12px 16px; border-radius:12px
-    }
+    .card:hover{transform:translateY(-4px); box-shadow:0 22px 80px rgba(0,0,0,.6); border-color:rgba(123,92,255,.45)}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;font-weight:600;background:linear-gradient(90deg,var(--violet),var(--blue));color:#0c0c0c;border:none;box-shadow:0 10px 32px rgba(66,124,255,.35)}
+    .btn-ghost{display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid var(--line);color:#e9e9ff;background:transparent}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:32px 0}
 
-    /* Stage background: orbs + spotlight */
+    /* TOP NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(13,13,13,.6);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav .inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav .links a{margin-left:14px}
+
+    /* STAGE: animated hero art */
     .stage{position:fixed; inset:0; pointer-events:none; z-index:0}
     .vignette{
       position:absolute; inset:-25vh -25vw;
       background:
-        radial-gradient(120vmax 120vmax at 50% 48%, rgba(255,255,255,.10) 0%, rgba(255,255,255,.04) 22%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.7) 100%);
+        radial-gradient(120vmax 120vmax at 50% 45%, rgba(255,255,255,.10) 0%, rgba(255,255,255,.04) 20%, rgba(0,0,0,.32) 58%, rgba(0,0,0,.7) 100%);
     }
     .orb{
-      position:absolute; border-radius:50%; mix-blend-mode:screen; filter:blur(100px); opacity:.40;
+      position:absolute; border-radius:50%; mix-blend-mode:screen; filter:blur(100px); opacity:.42;
       background:
         radial-gradient(circle at 30% 30%, var(--violet), transparent 70%),
         radial-gradient(circle at 70% 60%, var(--blue)  , transparent 65%),
         radial-gradient(circle at 40% 80%, var(--cyan)  , transparent 70%);
       animation:float 26s ease-in-out infinite;
     }
-    .o1{width:75vmin;height:75vmin;left:-12vmin;bottom:-20vmin;animation-duration:30s}
-    .o2{width:65vmin;height:65vmin;right:-14vmin;top:0;animation-duration:24s;animation-delay:-6s}
-    .o3{width:85vmin;height:85vmin;right:10vmin;bottom:-28vmin;animation-duration:28s;animation-delay:-3s}
-    @keyframes float{
-      0%{transform:translate3d(0,0,0) scale(1)}
-      50%{transform:translate3d(90px,-120px,0) scale(1.08)}
-      100%{transform:translate3d(0,0,0) scale(1)}
-    }
-    @media (prefers-reduced-motion:reduce){ .orb{animation:none} }
+    .o1{width:80vmin;height:80vmin;left:-14vmin;bottom:-20vmin;animation-duration:30s}
+    .o2{width:70vmin;height:70vmin;right:-16vmin;top:0;animation-duration:24s;animation-delay:-6s}
+    .o3{width:95vmin;height:95vmin;right:8vmin;bottom:-30vmin;animation-duration:28s;animation-delay:-3s}
+    @keyframes float{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(90px,-120px,0) scale(1.08)}100%{transform:translate3d(0,0,0) scale(1)}}
+    @media (prefers-reduced-motion:reduce){.orb{animation:none}}
 
-    /* Hero */
-    header.hero{
-      position:relative; z-index:2; padding:120px 0 60px; text-align:center;
-    }
-    .hero .logo{width:min(460px,72vw); height:auto; display:block; margin:0 auto 18px; filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
-    .hero .kicker{margin-bottom:12px}
-    .hero .lead{max-width:860px; margin:12px auto 0}
+    /* HERO */
+    header.hero{position:relative;z-index:2;padding:120px 0 56px;text-align:center}
+    .hero .logo{width:min(460px,72vw);height:auto;display:block;margin:0 auto 14px;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
+    .hero .lead{max-width:900px;margin:10px auto 0}
+    .hero .cta{margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-    /* Sections */
-    section{position:relative; z-index:2; padding:64px 0}
-    .divider{height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent); margin:32px 0}
+    /* SECTION basics */
+    section{position:relative;z-index:2;padding:64px 0}
 
-    /* Icon chips */
-    .ico{width:28px;height:28px;display:inline-block;margin-right:8px;vertical-align:-6px}
-    .ico > svg{width:100%;height:100%}
+    /* ICONS */
+    .ico{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;margin-right:8px;vertical-align:-6px}
+    .ico svg{width:100%;height:100%}
 
-    /* Lists */
-    ul.clean{padding-left:0; list-style:none; margin:0}
-    ul.clean li{padding:8px 0; border-bottom:1px dashed rgba(255,255,255,.08)}
-    ul.clean li:last-child{border-bottom:0}
+    /* MOCK IMAGES (inline SVG frames) */
+    .mock{border:1px solid #202020;border-radius:16px;overflow:hidden;background:#0f0f12;box-shadow:0 18px 60px rgba(0,0,0,.55)}
+    .mock .chrome{height:34px;background:linear-gradient(180deg,#1b1b1f,#151519);display:flex;gap:6px;align-items:center;padding:0 10px;border-bottom:1px solid #1f1f24}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .d1{background:#ff5f57}.d2{background:#ffbd2e}.d3{background:#28c840}
+    .shine{position:absolute;inset:0;background:radial-gradient(90vmax 60vmax at 85% -10%, rgba(123,92,255,.25), transparent 40%), radial-gradient(60vmax 45vmax at -10% 110%, rgba(74,163,255,.25), transparent 45%);pointer-events:none;mix-blend-mode:screen}
 
-    /* Footer */
-    footer{position:relative; z-index:2; padding:40px 0; color:#9b9b9b; text-align:center; border-top:1px solid var(--line)}
+    /* MARQUEE */
+    .marquee{position:relative;overflow:hidden}
+    .track{display:flex;gap:28px;animation:scroll 28s linear infinite;padding:6px 0;opacity:.9}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* REVEAL on scroll */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.show{opacity:1;transform:translateY(0)}
+
+    /* FOOTER */
+    footer{position:relative;z-index:2;padding:40px 0;color:#9b9b9b;text-align:center;border-top:1px solid var(--line)}
     .legal{font-size:.9rem}
   </style>
 </head>
@@ -115,141 +115,217 @@
     <div class="orb o3"></div>
   </div>
 
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container inner">
+      <a href="/" style="display:flex;align-items:center;gap:10px">
+        <img src="/logo.png" alt="MediaFinance.Ai" style="width:120px;height:auto;display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))">
+      </a>
+      <div class="links">
+        <a href="/" class="btn-ghost">Home</a>
+        <a href="/about" class="btn" style="margin-left:8px">About</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- HERO -->
   <header class="hero container">
-    <img src="/logo.png" alt="MediaFinance.Ai" class="logo" />
-    <div class="kicker pill">At the forefront of media finance AI — built for studios</div>
-    <h1 class="h1">AI-powered financial systems for film & TV — precise, fast, studio-compliant.</h1>
+    <span class="pill">At the forefront of media finance AI</span>
+    <h1 class="h1">Precision finance systems for film & TV — built for studio workflows.</h1>
     <p class="lead">
-      MediaFinance.Ai works alongside the tools you already use — Crew Start, Team Engine & Sargent Disc for payroll, and DPO for AP — removing room for error and accelerating month-end with AI checks, matching and automation.
+      We work alongside your stack — Crew Start, Team Engine, Sargent Disc, DPO — to eliminate manual entry, catch errors before they land in cost reports, and move approvals at studio speed.
     </p>
-    <div class="spacer-2"></div>
-    <div>
+    <div class="cta">
+      <a href="mailto:laurence@mediafinance.ai" class="btn">Get in touch</a>
       <a href="/" class="btn-ghost">← Back to Home</a>
-      <a href="mailto:laurence@mediafinance.ai" class="btn" style="margin-left:10px;">Get in touch</a>
     </div>
   </header>
 
-  <!-- MISSION -->
-  <section class="container center">
-    <h3 class="h3">Mission</h3>
-    <h2 class="h2">Take the strain off overworked production accountants.</h2>
-    <p class="lead muted" style="max-width:820px;margin:10px auto 0;">
-      We’re two industry professionals with 30+ years’ experience. Our aim is simple: remove manual entry, reduce reconciliation pain, and make approvals airtight — so finance teams can focus on production, not paperwork.
-    </p>
-  </section>
+  <!-- COMPATIBILITY MARQUEE -->
+  <section class="marquee">
+    <div class="track container muted">
+      <span class="pill">Crew Start</span>
+      <span class="pill">Team Engine</span>
+      <span class="pill">Sargent Disc</span>
+      <span class="pill">DPO</span>
+      <span class="pill">COA Mapping</span>
+      <span class="pill">Incentive Tagging</span>
+      <span class="pill">Audit Trails</span>
 
-  <div class="divider container"></div>
-
-  <!-- PAIN POINTS -->
-  <section class="container">
-    <h3 class="h3 center">Pain points we eliminate</h3>
-    <div class="spacer-1"></div>
-    <div class="grid grid-3">
-      <div class="card">
-        <div class="ico">
-          <!-- crosshair icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7.5" stroke="white" opacity=".85"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="white" opacity=".85"/></svg>
-        </div>
-        <strong>Inaccuracy</strong>
-        <p class="muted">AI validations at input, hard-coded compliance rules, and reconciliations that flag issues before they hit cost reports.</p>
-      </div>
-      <div class="card">
-        <div class="ico">
-          <!-- clock icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7.5" stroke="white" opacity=".85"/><path d="M12 7v5l4 2" stroke="white" opacity=".85"/></svg>
-        </div>
-        <strong>Time wasting</strong>
-        <p class="muted">Automated matching, templated approvals and auto-filing collapse manual hours into minutes.</p>
-      </div>
-      <div class="card">
-        <div class="ico">
-          <!-- people icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 11a3 3 0 1 0-6 0 3 3 0 0 0 6 0Z" stroke="white" opacity=".85"/><path d="M3 20c1.5-3.5 6-4 8.5-4s7 1 9.5 4" stroke="white" opacity=".85"/></svg>
-        </div>
-        <strong>Over-staffing</strong>
-        <p class="muted">Let AI do the checks; keep humans on creative and commercial decisions.</p>
-      </div>
+      <!-- repeat for seamless loop -->
+      <span class="pill">Crew Start</span>
+      <span class="pill">Team Engine</span>
+      <span class="pill">Sargent Disc</span>
+      <span class="pill">DPO</span>
+      <span class="pill">COA Mapping</span>
+      <span class="pill">Incentive Tagging</span>
+      <span class="pill">Audit Trails</span>
     </div>
   </section>
 
   <div class="divider container"></div>
 
-  <!-- PRODUCT PILLARS -->
+  <!-- PRODUCT PILLARS (cards) -->
   <section class="container">
     <h3 class="h3 center">What we’re building first</h3>
-    <h2 class="h2 center">Roadmap — next few months</h2>
-    <div class="spacer-1"></div>
-    <div class="grid grid-2">
-      <div class="card">
-        <div class="ico">
-          <!-- budget icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" opacity=".85"/><path d="M7 12h10M7 8h6" stroke="white" opacity=".85"/></svg>
-        </div>
+    <h2 class="h2 center">Studio-ready AI modules</h2>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" opacity=".85"/><path d="M7 12h10M7 8h6" stroke="white" opacity=".85"/></svg></div>
         <strong>Budget Builder</strong>
-        <p class="muted">AI builds first-pass budgets from scripts or outlines, with studio-compliant top sheets, COA mapping and incentive tagging.</p>
+        <p class="muted">AI drafts first-pass budgets from scripts/outlines. Studio-compliant top sheets, COA mapping, and incentive tagging baked in.</p>
       </div>
-      <div class="card">
-        <div class="ico">
-          <!-- payroll icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="white" opacity=".85"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="white" opacity=".85"/><path d="M8 13h8M8 16h5" stroke="white" opacity=".85"/></svg>
-        </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="white" opacity=".85"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="white" opacity=".85"/><path d="M8 13h8M8 16h5" stroke="white" opacity=".85"/></svg></div>
         <strong>Payroll Builder & Checker</strong>
-        <p class="muted">Integrates with Crew Start, Team Engine & Sargent Disc. Auto-calculations, approval thresholds, and exception reports reduce corrections.</p>
+        <p class="muted">Integrates with Crew Start, Team Engine & Sargent Disc. Approval thresholds, auto-calc, exception flags — less rework, faster closes.</p>
       </div>
-      <div class="card">
-        <div class="ico">
-          <!-- ap icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" opacity=".85"/><path d="M7 9h10M7 13h8" stroke="white" opacity=".85"/><path d="M17 16v4" stroke="url(#g1)"/><defs><linearGradient id="g1" x1="17" y1="16" x2="17" y2="20"><stop stop-color="#7b5cff"/><stop offset="1" stop-color="#4aa3ff"/></linearGradient></defs></svg>
-        </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" opacity=".85"/><path d="M7 9h10M7 13h8" stroke="white" opacity=".85"/><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#7b5cff"/><stop offset="1" stop-color="#4aa3ff"/></linearGradient></defs></svg></div>
         <strong>AP Auto-Matching</strong>
-        <p class="muted">Matches invoices, POs and receipts; flags gaps; and routes approvals. Works alongside DPO.</p>
+        <p class="muted">Invoice ⇄ PO ⇄ Receipt matching with confidence scores. Auto-route approvals, surface gaps, and keep auditors happy.</p>
       </div>
-      <div class="card">
-        <div class="ico">
-          <!-- file icon -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 3h6l4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="white" opacity=".85"/><path d="M13 3v5h5" stroke="white" opacity=".85"/></svg>
-        </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h6l4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="white" opacity=".85"/><path d="M13 3v5h5" stroke="white" opacity=".85"/></svg></div>
         <strong>Smart Filing</strong>
-        <p class="muted">Auto file naming & placement with audit trails — built for retrieval, audits and studio hand-off.</p>
+        <p class="muted">Auto file naming & placement by show/department/vendor with immutable audit trails. Retrieval in seconds, hand-off that’s painless.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INLINE “IMAGES” — three UI mock frames -->
+  <section class="container">
+    <div class="grid g3">
+      <!-- Mock 1: Cost Report -->
+      <div class="mock reveal" role="img" aria-label="Cost report mock screen">
+        <div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span></div>
+        <svg viewBox="0 0 900 520" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="h1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7b5cff"/><stop offset="1" stop-color="#4aa3ff"/></linearGradient>
+          </defs>
+          <rect x="0" y="0" width="900" height="520" fill="#0f0f12"/>
+          <rect x="20" y="20" width="300" height="18" rx="4" fill="url(#h1)" opacity=".9"/>
+          <rect x="20" y="60" width="860" height="48" rx="8" fill="#121218" stroke="#202028"/>
+          <!-- table headers -->
+          <g fill="#cfcfe8" opacity=".9">
+            <rect x="40" y="75" width="120" height="8" rx="4"/>
+            <rect x="200" y="75" width="120" height="8" rx="4"/>
+            <rect x="360" y="75" width="120" height="8" rx="4"/>
+            <rect x="520" y="75" width="120" height="8" rx="4"/>
+            <rect x="680" y="75" width="120" height="8" rx="4"/>
+          </g>
+          <!-- rows -->
+          <g fill="#15151c" stroke="#202028">
+            <rect x="20" y="120" width="860" height="40" rx="8"/>
+            <rect x="20" y="170" width="860" height="40" rx="8"/>
+            <rect x="20" y="220" width="860" height="40" rx="8"/>
+            <rect x="20" y="270" width="860" height="40" rx="8"/>
+            <rect x="20" y="320" width="860" height="40" rx="8"/>
+            <rect x="20" y="370" width="860" height="40" rx="8"/>
+          </g>
+          <!-- variance tags -->
+          <g>
+            <rect x="760" y="130" width="90" height="20" rx="10" fill="rgba(0,212,255,.16)" stroke="#00d4ff"/>
+            <rect x="760" y="230" width="90" height="20" rx="10" fill="rgba(123,92,255,.16)" stroke="#7b5cff"/>
+            <rect x="760" y="330" width="90" height="20" rx="10" fill="rgba(74,163,255,.16)" stroke="#4aa3ff"/>
+          </g>
+        </svg>
+        <div class="shine"></div>
+      </div>
+
+      <!-- Mock 2: Payroll approvals -->
+      <div class="mock reveal" role="img" aria-label="Payroll approvals mock screen">
+        <div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span></div>
+        <svg viewBox="0 0 900 520" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="520" fill="#0f0f12"/>
+          <rect x="20" y="20" width="300" height="18" rx="4" fill="#4aa3ff" opacity=".9"/>
+          <rect x="20" y="60" width="400" height="42" rx="8" fill="#121218" stroke="#202028"/>
+          <!-- list -->
+          <g>
+            <rect x="20" y="120" width="860" height="62" rx="10" fill="#15151c" stroke="#202028"/>
+            <rect x="20" y="192" width="860" height="62" rx="10" fill="#15151c" stroke="#202028"/>
+            <rect x="20" y="264" width="860" height="62" rx="10" fill="#15151c" stroke="#202028"/>
+            <rect x="20" y="336" width="860" height="62" rx="10" fill="#15151c" stroke="#202028"/>
+          </g>
+          <!-- approve buttons -->
+          <g>
+            <rect x="760" y="136" width="100" height="30" rx="8" fill="url(#g2)"/>
+            <rect x="760" y="208" width="100" height="30" rx="8" fill="url(#g2)"/>
+            <rect x="760" y="280" width="100" height="30" rx="8" fill="url(#g2)"/>
+            <rect x="760" y="352" width="100" height="30" rx="8" fill="url(#g2)"/>
+          </g>
+          <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7b5cff"/><stop offset="1" stop-color="#4aa3ff"/></linearGradient></defs>
+        </svg>
+        <div class="shine"></div>
+      </div>
+
+      <!-- Mock 3: AP matching -->
+      <div class="mock reveal" role="img" aria-label="AP matching mock screen">
+        <div class="chrome"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span></div>
+        <svg viewBox="0 0 900 520" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="520" fill="#0f0f12"/>
+          <rect x="20" y="20" width="270" height="18" rx="4" fill="#7b5cff" opacity=".9"/>
+          <!-- three columns -->
+          <rect x="20" y="60" width="260" height="420" rx="12" fill="#131319" stroke="#202028"/>
+          <rect x="320" y="60" width="260" height="420" rx="12" fill="#131319" stroke="#202028"/>
+          <rect x="620" y="60" width="260" height="420" rx="12" fill="#131319" stroke="#202028"/>
+          <!-- rows -->
+          <g fill="#1a1a22" stroke="#22222a">
+            <rect x="30" y="100" width="240" height="50" rx="8"/>
+            <rect x="30" y="160" width="240" height="50" rx="8"/>
+            <rect x="330" y="100" width="240" height="50" rx="8"/>
+            <rect x="330" y="160" width="240" height="50" rx="8"/>
+            <rect x="630" y="100" width="240" height="50" rx="8"/>
+            <rect x="630" y="160" width="240" height="50" rx="8"/>
+          </g>
+          <!-- match links -->
+          <g stroke="#00d4ff" stroke-opacity=".85">
+            <path d="M270 125 C 310 125 310 125 330 125" />
+            <path d="M270 185 C 310 185 310 185 330 185" />
+            <path d="M570 125 C 600 125 600 125 630 125" />
+            <path d="M570 185 C 600 185 600 185 630 185" />
+          </g>
+        </svg>
+        <div class="shine"></div>
       </div>
     </div>
   </section>
 
   <div class="divider container"></div>
 
-  <!-- VISION / TIMELINE -->
+  <!-- MISSION / VISION -->
   <section class="container">
-    <h3 class="h3 center">Vision</h3>
-    <h2 class="h2 center">12–24 months</h2>
-    <div class="spacer-1"></div>
-    <div class="grid grid-3">
-      <div class="card">
-        <strong>Year 1</strong>
-        <ul class="clean muted">
-          <li>Budget Builder (top-sheet first, COA & incentive tagging)</li>
-          <li>Payroll Builder & Checker (approvals, exceptions, exports)</li>
-          <li>AP Auto-Matching (PO → Invoice → Receipt)</li>
-          <li>Smart Filing (naming, structure, audit logs)</li>
-        </ul>
+    <div class="grid g2">
+      <div class="card reveal">
+        <h3 class="h3">Mission</h3>
+        <h2 class="h2">Take the strain off production accountants.</h2>
+        <p class="muted">We’re industry practitioners (30+ years combined). The goal: fewer keystrokes, fewer corrections, fewer long nights — and finance packs that are right the first time.</p>
       </div>
-      <div class="card">
-        <strong>Year 2</strong>
-        <ul class="clean muted">
-          <li>Scenario Planning (location/crew/schedule swaps)</li>
-          <li>Compliance Guardrails (studio rules, wire/PO thresholds)</li>
-          <li>Reporting Pack (cost reports, hot costs, variance trackers)</li>
-          <li>Collaboration & permissions for studio workflows</li>
-        </ul>
+      <div class="card reveal">
+        <h3 class="h3">Vision — 12–24 months</h3>
+        <p class="muted">This year: Budget Builder and Payroll Checker live in production; AP matching and Smart Filing close the loop. Next year: scenario planning, deeper compliance guardrails, and a studio-ready reporting pack.</p>
       </div>
-      <div class="card">
-        <strong>Built for Studios</strong>
-        <ul class="clean muted">
-          <li>Works alongside existing vendors (payroll/AP stacks)</li>
-          <li>Hard-coded checks & approvals; full audit trail</li>
-          <li>COA mapping + incentive tagging by jurisdiction</li>
-          <li>Security and data privacy by design</li>
-        </ul>
+    </div>
+  </section>
+
+  <div class="divider container"></div>
+
+  <!-- WHY STUDIOS CARE -->
+  <section class="container">
+    <h3 class="h3 center">Why studios choose MediaFinance.Ai</h3>
+    <h2 class="h2 center">Accuracy. Speed. Auditability.</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card reveal">
+        <strong>Accuracy</strong>
+        <p class="muted">Guardrails at the point of entry; COA & incentive tagging on every line; exception detection before approvals.</p>
+      </div>
+      <div class="card reveal">
+        <strong>Speed</strong>
+        <p class="muted">AI-assisted drafting, auto-matching and structured filing compress days into hours. Month-end without the scramble.</p>
+      </div>
+      <div class="card reveal">
+        <strong>Auditability</strong>
+        <p class="muted">Immutable logs, approval trails and predictable file structures built around studio manuals and vendor hand-off.</p>
       </div>
     </div>
   </section>
@@ -259,13 +335,12 @@
   <!-- CONTACT -->
   <section class="container center">
     <h3 class="h3">Contact</h3>
-    <h2 class="h2">Let’s talk pilots & data access</h2>
-    <p class="lead muted" style="max-width:820px;margin:10px auto 22px;">
-      We’re onboarding early productions and studio finance teams. If you’re exploring AI-assisted budgeting, payroll validation or AP matching, we’d love to collaborate.
+    <h2 class="h2">Early pilots with producers & studio finance</h2>
+    <p class="lead muted" style="max-width:860px;margin:10px auto 22px">
+      If you’re exploring AI-assisted budgeting, payroll validation or AP matching, we’d love to collaborate. Discreet, practical, outcomes-focused.
     </p>
-    <div>
+    <div class="cta">
       <a class="btn" href="mailto:laurence@mediafinance.ai">laurence@mediafinance.ai</a>
-      <span style="display:inline-block;margin-left:10px"></span>
       <a class="btn-ghost" href="/">Back to Home</a>
     </div>
   </section>
@@ -276,6 +351,22 @@
     </div>
   </footer>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+  <script>
+    // simple reveal-on-scroll
+    const items = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=> {
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    }, {threshold:.16});
+    items.forEach(i=>io.observe(i));
+
+    // respect reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.track').forEach(t=>t.style.animation='none');
+    }
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
