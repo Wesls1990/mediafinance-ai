@@ -25,7 +25,7 @@
     a:hover{text-decoration:underline}
     .container{width:min(1180px,92vw); margin:0 auto}
 
-    /* Background stage: elevated + tasteful */
+    /* Background */
     .stage{position:fixed; inset:0; pointer-events:none; z-index:0}
     .vignette{
       position:absolute; inset:-28vh -28vw;
@@ -47,14 +47,14 @@
     @keyframes float{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(82px,-118px,0) scale(1.08)}100%{transform:translate3d(0,0,0) scale(1)}}
     @media (prefers-reduced-motion:reduce){.orb{animation:none}}
 
-    /* Grain for richness */
+    /* Grain */
     .grain:before{
       content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
       background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 0 0 .08 .12 .08 0 0 0 0'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23n)' /></svg>");
       opacity:.25; mix-blend-mode:soft-light;
     }
 
-    /* Reusable bits */
+    /* Helpers */
     .center{text-align:center}
     .muted{color:var(--muted)}
     .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:36px 0}
@@ -69,7 +69,11 @@
     .btn:hover{transform:translateY(-2px); box-shadow:0 20px 60px rgba(72,120,255,.52); filter:saturate(1.05)}
 
     /* HERO */
-    header.hero{position:relative;z-index:2;padding:130px 0 72px; text-align:center}
+    header.hero{position:relative;z-index:2;padding:110px 0 56px; text-align:center}
+    .brand-logo{
+      width:min(420px,80vw); height:auto; display:block; margin:0 auto 18px;
+      filter:drop-shadow(0 14px 36px rgba(0,0,0,.55));
+    }
     .hero h1{
       font-size:clamp(2.2rem,4.5vw,3.8rem); line-height:1.07; margin:0 0 16px;
       letter-spacing:-.01em;
@@ -83,14 +87,14 @@
     .hero .cta{margin-top:18px}
 
     /* SECTION TITLES */
-    .title-wrap{position:relative;z-index:2;padding:20px 0 6px}
+    .title-wrap{position:relative;z-index:2;padding:20px 0 6px;text-align:center}
     .eyebrow{font-size:.9rem; letter-spacing:.16em; text-transform:uppercase; color:#cfd2ff; opacity:.92; margin:0 0 10px}
     h2.section-title{font-size:clamp(1.9rem,3.3vw,2.6rem); margin:0}
 
     /* MODULE GROUPS */
     .modules{position:relative; z-index:2; margin-top:18px}
     .group{margin:26px 0}
-    .group h3{font-size:1.05rem; letter-spacing:.14em; text-transform:uppercase; color:#cfd2ff; margin:0 0 14px}
+    .group h3{font-size:1.05rem; letter-spacing:.14em; text-transform:uppercase; color:#cfd2ff; margin:0 0 14px; text-align:center}
     .grid{display:grid; gap:20px}
     .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
     @media (max-width:800px){.g2{grid-template-columns:1fr}}
@@ -100,12 +104,29 @@
       border:1px solid var(--line); border-radius:var(--radius); padding:24px;
       box-shadow:0 18px 70px rgba(0,0,0,.55); backdrop-filter:saturate(140%) blur(6px);
       transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+      text-align:left;
     }
     .card:hover{transform:translateY(-4px); box-shadow:0 26px 90px rgba(0,0,0,.7); border-color:rgba(123,92,255,.45)}
     .card .name{font-weight:800; font-size:1.1rem; letter-spacing:.01em}
     .card p{color:#d6d6de; margin:.45rem 0 0}
 
-    /* CONTACT */
+    /* BLOG / NEWS */
+    .news{position:relative; z-index:2; padding:50px 0}
+    .news-grid{display:grid; gap:20px; grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:1000px){.news-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:700px){.news-grid{grid-template-columns:1fr}}
+    .post{
+      background:linear-gradient(180deg,var(--glass1),var(--glass2));
+      border:1px solid var(--line); border-radius:16px; padding:20px;
+      box-shadow:0 16px 60px rgba(0,0,0,.5); text-align:left;
+      transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .post:hover{transform:translateY(-3px); box-shadow:0 22px 80px rgba(0,0,0,.65); border-color:rgba(123,92,255,.45)}
+    .post .date{font-size:.85rem; color:#cfd2ff; opacity:.9; letter-spacing:.04em}
+    .post h4{margin:.35rem 0 .25rem; font-size:1.15rem}
+    .post p{margin:0; color:#d8d8e2}
+
+    /* CONTACT / FOOTER */
     .contact{position:relative; z-index:2; padding:70px 0 50px; text-align:center}
     .contact p{max-width:860px;margin:10px auto 22px;color:#d6d6de}
     footer{position:relative;z-index:2;padding:38px 0;color:#9b9b9b;text-align:center;border-top:1px solid var(--line)}
@@ -122,8 +143,10 @@
   </div>
 
   <main>
-    <!-- HERO (no nav, no ticker, single CTA) -->
-    <header class="hero container reveal">
+    <!-- HERO -->
+    <header class="hero container reveal center">
+      <!-- Big logo -->
+      <img class="brand-logo" src="/logo.png" alt="MediaFinance.Ai" />
       <h1>
         Studio-grade <span class="highlight">media finance AI</span><br/>
         for film &amp; TV — precise, fast, compliant.
@@ -140,13 +163,12 @@
     <div class="divider container"></div>
 
     <!-- SECTION HEADER -->
-    <section class="container title-wrap reveal">
+    <section class="container title-wrap reveal center">
       <h2 class="section-title">Studio-ready AI modules</h2>
     </section>
 
     <!-- MODULES -->
     <section class="container modules">
-
       <!-- What we’re building first -->
       <div class="group reveal">
         <h3>What we’re building first</h3>
@@ -180,9 +202,9 @@
 
     <div class="divider container"></div>
 
-    <!-- MISSION / VISION (tight, executive) -->
-    <section class="container reveal">
-      <div class="grid g2">
+    <!-- MISSION / VISION -->
+    <section class="container reveal center">
+      <div class="grid g2" style="text-align:left; margin:auto;">
         <div>
           <h3 class="eyebrow">Mission</h3>
           <h2 class="section-title">Take the strain off production accountants.</h2>
@@ -195,8 +217,36 @@
       </div>
     </section>
 
-    <!-- CONTACT (no extra nav) -->
-    <section class="contact container reveal">
+    <div class="divider container"></div>
+
+    <!-- BLOG / NEWS -->
+    <section class="news container reveal center">
+      <h3 class="eyebrow">Blog / News</h3>
+      <h2 class="section-title">Updates from MediaFinance.Ai</h2>
+      <div class="news-grid" style="margin-top:18px;text-align:left;">
+        <!-- Post 1 -->
+        <article class="post">
+          <div class="date">Sept 2025</div>
+          <h4>Introducing Budget Builder — first pilots opening</h4>
+          <p>We’re onboarding productions to trial AI-drafted budgets with studio-compliant top sheets and incentive tagging. Interested? <a href="mailto:laurence@mediafinance.ai">Get in touch</a>.</p>
+        </article>
+        <!-- Post 2 -->
+        <article class="post">
+          <div class="date">Sept 2025</div>
+          <h4>Payroll Builder: approvals & exceptions</h4>
+          <p>Approvals by threshold, exception flags, and clean exports designed for Sargent Disc integrations. Early feedback is strong.</p>
+        </article>
+        <!-- Post 3 -->
+        <article class="post">
+          <div class="date">Coming 2026</div>
+          <h4>AP Auto-Matching & Smart Filing</h4>
+          <p>Automated invoice ⇄ PO ⇄ receipt matching with audit-ready filing structures. Aiming to compress days into hours at month-end.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact container reveal center">
       <h3 class="eyebrow">Contact</h3>
       <h2 class="section-title">Pilots with producers & studio finance</h2>
       <p>Exploring AI-assisted budgeting, payroll validation or AP matching? Let’s collaborate — discreet, practical, outcome-focused.</p>
